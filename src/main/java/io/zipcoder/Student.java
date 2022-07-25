@@ -39,7 +39,6 @@ public class Student {
         for (int i = 0; i < examScores.size(); i++) {
             s += "        Exam " + i + " -> " + examScores.get(i) + "\n";
         }
-        System.out.print(s);
         return s;
     }
 
