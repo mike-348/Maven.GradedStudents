@@ -71,4 +71,23 @@ public class ClassroomTest {
 
         Assert.assertEquals(output, cl.getStudentsByScore());
     }
+
+    @Test
+    public void getPercentileTest() {
+        Student daph = new Student("daphne", "blake", new Double[]{95.00, 95.00});
+        Student shaggy = new Student("shaggy", "rogers", new Double[]{40.00, 80.00});
+        Student fred = new Student("fred", "jones", new Double[]{65.00, 85.00});
+        Student scoob = new Student("scooby", "doo", new Double[]{80.00, 40.00});
+        Student velma = new Student("velma", "dinkley", new Double[]{100.00, 100.00});
+
+        Classroom cl = new Classroom(0);
+        cl.addStudent(daph); //95
+        cl.addStudent(shaggy); //60
+        cl.addStudent(fred); //75
+        cl.addStudent(scoob); //60
+        cl.addStudent(velma); //100
+
+        System.out.println(shaggy.getAverageExamScore());
+        System.out.println(cl.getPercentile(scoob));
+    }
 }
