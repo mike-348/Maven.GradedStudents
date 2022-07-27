@@ -1,6 +1,5 @@
 package io.zipcoder;
 
-import javax.swing.plaf.IconUIResource;
 import java.util.*;
 
 public class Classroom {
@@ -57,20 +56,34 @@ public class Classroom {
         return studentList.toArray(new Student[0]);
     }
 
-    public HashMap getGradebook() {
-        List<Student> percentiles = new ArrayList<>(Arrays.asList(students));
-        return new HashMap();
+    public Map<String, Character> getGradebook() {
+        Map<String, Character> gradeBook = new HashMap<>();
+        for (Student s : students) {
+            String name = s.getLastName() + ", " + s.getFirstName();
+            if (getPercentile(s) >= 90) {
+                gradeBook.put(name, 'A');
+            } else if (getPercentile(s) < 90 && getPercentile(s) >= 71) {
+                gradeBook.put(name, 'B');
+            } else if (getPercentile(s) < 71 && getPercentile(s) >= 50) {
+                gradeBook.put(name, 'C');
+            } else if (getPercentile(s) < 50 && getPercentile(s) >= 11) {
+                gradeBook.put(name, 'D');
+            } else gradeBook.put(name, 'F');
+        }
+        return gradeBook;
     }
 
-    public Integer getPercentile(Student student) {
+    public double getPercentile(Student student) {
 //        percentile = Number of Values Below “x” / Total Number of Values × 100 https://www.cuemath.com/percentile-formula/
-        int numBelow = 0;
+        double numBelow = 0.0;
         for (Student s : students) {
-            if (student.getAverageExamScore() >= s.getAverageExamScore()) {
+            if (s.getAverageExamScore() <= student.getAverageExamScore()) {
                 numBelow++;
             }
         }
-        return (numBelow / students.length) * 100;
+        int numStudents = students.length;
+        double percentile = numBelow / numStudents;
+        return percentile * 100;
     }
 
 

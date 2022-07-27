@@ -59,12 +59,12 @@ public class Student {
         return sum / examScores.size();
     }
 
-    public String toString() {
-        String str = "Student Name: " + getFirstName() + " " + getLastName() + "\n";
-        str += "Average Score: " + getAverageExamScore() + "\n";
-        str += getExamScores();
-        return str;
-    }
+//    public String toString() {
+//        String str = "Student Name: " + getFirstName() + " " + getLastName() + "\n";
+//        str += "Average Score: " + getAverageExamScore() + "\n";
+//        str += getExamScores();
+//        return str;
+//    }
 
 
     public static void main (String[] args) {
