@@ -46,7 +46,18 @@ public class Classroom {
     }
 
     public Student[] getStudentsByScore() {
-        return null;
+        List<Student> studentList = new ArrayList<>(Arrays.asList(students));
+//        studentList.sort(Comparator.comparingDouble(Student::getAverageExamScore));;
+        Collections.sort(studentList,
+                Comparator.comparingDouble( (Student s) -> -s.getAverageExamScore())
+                        .thenComparing(s -> s.getLastName())
+                        .thenComparing(s -> s.getFirstName()));
+//        Collections.reverse(studentList);
+        return studentList.toArray(new Student[0]);
     }
 
+    public String toString() {
+        return Arrays.toString(students);
+    }
 }
+
